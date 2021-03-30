@@ -1,2 +1,1 @@
-# par
-Probabilistic Algorithms for Robotics
+# Probabilistic Algorithms for Robotics (par)
