@@ -15,23 +15,24 @@ if(CMAKE_CXX_COMPILER_ID MATCHES ".*Clang")
   endif()
 endif()
 
-# define input directory
-file(GLOB SENSOR_DATA "data/*.csv" )
-set(PATH_TO_SENSOR_DATA "${SENSOR_DATA}")
-configure_file("run_filter.h.in" "run_filter.h")
-
-add_library(sensor_data_reader sensor_data_reader.cpp)
-
-add_executable(run_filter run_filter.cpp)
-
-target_link_libraries(run_filter sensor_data_reader)
-
 # Link this 'library' to use the warnings specified in CompilerWarnings.cmake
 add_library(project_warnings INTERFACE)
 
 # standard compiler warnings
 include(cmake/CompilerWarnings.cmake)
 set_project_warnings(project_warnings)
+
+# define input directory
+file(GLOB SENSOR_DATA "data/*.csv" )
+set(PATH_TO_SENSOR_DATA "${SENSOR_DATA}")
+configure_file("run_filter.h.in" "run_filter.h")
+
+add_library(sensor_data_reader sensor_data_reader.cpp)
+target_link_libraries(sensor_data_reader PRIVATE project_options project_warnings) #TODO add project_warnings
+
+add_executable(run_filter run_filter.cpp)
+
+target_link_libraries(run_filter sensor_data_reader)
 
 option(ENABLE_TESTING "Enable Test Builds" OFF)
 
