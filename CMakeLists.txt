@@ -27,12 +27,12 @@ file(GLOB SENSOR_DATA "data/*.csv" )
 set(PATH_TO_SENSOR_DATA "${SENSOR_DATA}")
 configure_file("run_filter.h.in" "run_filter.h")
 
-add_library(sensor_data_reader sensor_data_reader.cpp)
-target_link_libraries(sensor_data_reader PRIVATE project_options project_warnings)
+add_library(sensor_data_handler sensor_data_handler.cpp)
+target_link_libraries(sensor_data_handler PRIVATE project_options project_warnings)
 
 add_executable(run_filter run_filter.cpp)
 
-target_link_libraries(run_filter PRIVATE project_options project_warnings sensor_data_reader)
+target_link_libraries(run_filter PRIVATE project_options project_warnings sensor_data_handler)
 
 option(ENABLE_TESTING "Enable Test Builds" OFF)
 
