@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.17)
 
-project(probablistic_filters CXX)
+project(probabilistic_filters CXX)
 include(cmake/StandardProjectSettings.cmake)
 
 set(CMAKE_CXX_STANDARD 17)
