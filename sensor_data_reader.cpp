@@ -2,6 +2,8 @@
 #include <fstream>
 #include "sensor_data_reader.h"
 
+using namespace std;
+
 void SensorDataReader::readSensorData(string file_path) {
     string ground_truth_x, sensor_1_x, ground_truth_y, sensor_1_y, line;
     
