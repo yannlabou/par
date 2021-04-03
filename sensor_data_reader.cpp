@@ -5,8 +5,12 @@
 using namespace std;
 
 void SensorDataReader::readSensorData(string file_path) {
-    string ground_truth_x, sensor_1_x, ground_truth_y, sensor_1_y, line;
-    
+    string ground_truth_x;
+    string sensor_1_x;
+    string ground_truth_y;
+    string sensor_1_y;
+    string line;
+
     ifstream input_file_stream(file_path);
 
     while( getline(input_file_stream, line)){
