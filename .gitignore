@@ -2,6 +2,7 @@
 *.d
 
 # Compiled Object files
+build/
 *.slo
 *.lo
 *.o
@@ -33,3 +34,4 @@
 
 # IDE
 .vscode/
+.idea/
