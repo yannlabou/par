@@ -21,7 +21,6 @@ class SensorDataReader {
 
     public:
         void readSensorData(string file_path);
-        void crossCheck();
         vector<double> getGroundTruthX();
         vector<double> getGroundTruthY();
         vector<double> getSensor1X();

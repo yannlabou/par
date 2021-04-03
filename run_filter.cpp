@@ -4,8 +4,7 @@
 
 int main() {
     SensorDataReader reader;
-    string sensor_data = SENSOR_DATA;
-    reader.readSensorData(sensor_data);
+    reader.readSensorData(SENSOR_DATA);
 
     const auto ground_truth_x_values = reader.getGroundTruthX();
     const auto ground_truth_y_values = reader.getGroundTruthY();
@@ -17,6 +16,8 @@ int main() {
     cout << ground_truth_y_values.size() << endl;
     cout << sensor_1_x_values.size() << endl;
     cout << sensor_1_x_values.size() << endl;
+
+    // TODO run filter on input data
 
     return 0;
 }
