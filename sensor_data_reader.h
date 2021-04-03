@@ -4,16 +4,6 @@
 
 using namespace std;
 
-namespace {
-// convert string to double
-double toNumber(const string & str) {
-    istringstream iss(str);
-    double number = 0.0;
-    iss >> number;
-    return number;
-}
-} // unnamed namespace
-
 class SensorDataReader {
     private:
         // sensor data incl. ground truth

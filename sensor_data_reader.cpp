@@ -1,3 +1,4 @@
+#include <cstdlib>
 #include <fstream>
 #include "sensor_data_reader.h"
 
@@ -16,10 +17,10 @@ void SensorDataReader::readSensorData(string file_path) {
         getline(iss, sensor_1_y, ',');
 
         // store values into corresponding vectors
-        ground_truth_x_values.push_back(toNumber(ground_truth_x));
-        sensor_1_x_values.push_back(toNumber(sensor_1_x));
-        ground_truth_y_values.push_back(toNumber(ground_truth_y));
-        sensor_1_y_values.push_back(toNumber(sensor_1_y));
+        ground_truth_x_values.push_back(std::strtod(ground_truth_x.c_str(), 0));
+        sensor_1_x_values.push_back(std::strtod(sensor_1_x.c_str(), 0));
+        ground_truth_y_values.push_back(std::strtod(ground_truth_y.c_str(), 0));
+        sensor_1_y_values.push_back(std::strtod(sensor_1_y.c_str(), 0));
     }
 }
 
