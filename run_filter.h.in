@@ -1,1 +1,0 @@
-#cmakedefine SENSOR_DATA "@PATH_TO_SENSOR_DATA@"

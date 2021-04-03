@@ -24,7 +24,6 @@ set_project_warnings(project_warnings)
 # define input directory
 file(GLOB SENSOR_DATA "data/*.csv" )
 set(PATH_TO_SENSOR_DATA "${SENSOR_DATA}")
-configure_file("run_filter.h.in" "run_filter.h")
 
 add_library(sensor_data_handler sensor_data_handler.cpp)
 target_link_libraries(sensor_data_handler PRIVATE project_options project_warnings)
