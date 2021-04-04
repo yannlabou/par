@@ -24,8 +24,11 @@ set_project_warnings(project_warnings)
 add_library(sensor_data_handler STATIC sensor_data_handler.cpp)
 target_link_libraries(sensor_data_handler PRIVATE project_options project_warnings)
 
+add_library(bayesian_filter STATIC bayesian_filter.cpp)
+target_link_libraries(bayesian_filter PRIVATE project_options project_warnings sensor_data_handler)
+
 add_executable(run_filter run_filter.cpp)
-target_link_libraries(run_filter PRIVATE project_options project_warnings sensor_data_handler)
+target_link_libraries(run_filter PRIVATE project_options project_warnings sensor_data_handler bayesian_filter)
 
 option(ENABLE_TESTING "Enable Test Builds" OFF)
 if(ENABLE_TESTING)
