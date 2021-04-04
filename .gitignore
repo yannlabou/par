@@ -28,10 +28,12 @@ build/
 *.lib
 
 # Executables
+build/
 *.exe
 *.out
 *.app
 
 # IDE
+.idea/
 .vscode/
 .idea/

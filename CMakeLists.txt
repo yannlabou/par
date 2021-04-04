@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.17)
 
-project(scratchpad CXX)
+project(probabilistic_filters CXX)
 include(cmake/StandardProjectSettings.cmake)
 
 # Link this 'library' to set the c++ standard / compile-time options requested
@@ -21,11 +21,16 @@ add_library(project_warnings INTERFACE)
 include(cmake/CompilerWarnings.cmake)
 set_project_warnings(project_warnings)
 
-option(ENABLE_TESTING "Enable Test Builds" OFF)
+add_library(sensor_data_handler STATIC sensor_data_handler.cpp)
+target_link_libraries(sensor_data_handler PRIVATE project_options project_warnings)
 
+add_executable(run_filter run_filter.cpp)
+target_link_libraries(run_filter PRIVATE project_options project_warnings sensor_data_handler)
+
+option(ENABLE_TESTING "Enable Test Builds" OFF)
 if(ENABLE_TESTING)
   enable_testing()
   add_subdirectory(test)
 endif()
 
-add_subdirectory(src)
+#add_subdirectory(src)
