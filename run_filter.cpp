@@ -1,17 +1,16 @@
-#include <iostream>
-#include <type_traits>
 #include "sensor_data_handler.h"
+#include <iostream>
 #include <string>
 
 using namespace std;
 
-int main(int argc, char** argv) {
+int main(int argc, char **argv) {
     if (argc != 2) {
         std::cerr << "usage: run_filter <file_path>\n";
         return EXIT_FAILURE;
     }
-    string file_path{ argv[1] };
-    
+    string file_path{argv[1]};
+
     SensorDataHandler data_handler;
     data_handler.readSensorData(file_path);
 
