@@ -21,19 +21,13 @@ add_library(project_warnings INTERFACE)
 include(cmake/CompilerWarnings.cmake)
 set_project_warnings(project_warnings)
 
-# define input directory
-file(GLOB SENSOR_DATA "data/*.csv" )
-set(PATH_TO_SENSOR_DATA "${SENSOR_DATA}")
-
-add_library(sensor_data_handler sensor_data_handler.cpp)
+add_library(sensor_data_handler STATIC sensor_data_handler.cpp)
 target_link_libraries(sensor_data_handler PRIVATE project_options project_warnings)
 
 add_executable(run_filter run_filter.cpp)
-
 target_link_libraries(run_filter PRIVATE project_options project_warnings sensor_data_handler)
 
 option(ENABLE_TESTING "Enable Test Builds" OFF)
-
 if(ENABLE_TESTING)
   enable_testing()
   add_subdirectory(test)
