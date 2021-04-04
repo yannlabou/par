@@ -5,7 +5,7 @@
 
 using namespace std;
 
-void SensorDataHandler::readSensorData(string file_path)
+void SensorDataHandler::readSensorData(std::string_view file_path)
 {
   string ground_truth_x;
   string sensor_1_x;
@@ -13,7 +13,7 @@ void SensorDataHandler::readSensorData(string file_path)
   string sensor_1_y;
   string line;
 
-  ifstream input_file_stream(file_path);
+  ifstream input_file_stream(file_path.data());
 
   while (getline(input_file_stream, line)) {
     istringstream iss(line);

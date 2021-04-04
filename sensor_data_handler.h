@@ -1,5 +1,6 @@
 #include <sstream>
 #include <string>
+#include <string_view>
 #include <vector>
 
 
@@ -18,7 +19,7 @@ public:
   SensorData sensor_data;
 
   // reader
-  void readSensorData(std::string file_path);
+  void readSensorData(std::string_view file_path);
 
   // TODO
   void writeSensorData(SensorData sensor_data);
