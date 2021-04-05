@@ -18,7 +18,9 @@ int main(int argc, char **argv) {
     cout << data_handler.sensor_data.ground_truth_x_values.size() << endl;
     cout << data_handler.sensor_data.ground_truth_y_values.size() << endl;
     cout << data_handler.sensor_data.sensor_1_x_values.size() << endl;
+    cout << data_handler.sensor_data.sensor_1_x_confidence.size() << endl;
     cout << data_handler.sensor_data.sensor_1_y_values.size() << endl;
+    cout << data_handler.sensor_data.sensor_1_y_confidence.size() << endl;
 
     // TODO run filter on input data
 

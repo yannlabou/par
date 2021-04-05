@@ -8,8 +8,10 @@ struct SensorData
 {
   std::vector<double> ground_truth_x_values{};
   std::vector<double> sensor_1_x_values;
+  std::vector<double> sensor_1_x_confidence;
   std::vector<double> ground_truth_y_values;
   std::vector<double> sensor_1_y_values;
+  std::vector<double> sensor_1_y_confidence;
 };
 
 class SensorDataHandler
