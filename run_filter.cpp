@@ -1,3 +1,4 @@
+#include "bayesian_filter.h"
 #include "sensor_data_handler.h"
 #include <iostream>
 #include <string>
@@ -22,7 +23,11 @@ int main(int argc, char **argv) {
     cout << data_handler.sensor_data.sensor_1_y_values.size() << endl;
     cout << data_handler.sensor_data.sensor_1_y_confidence.size() << endl;
 
-    // TODO run filter on input data
+    BayesianFilter bayesian_filter;
+    bayesian_filter.generateBelief(data_handler.sensor_data);
+
+    data_handler.writeSensorData("hello_sensor_data.csv", "x_belief", bayesian_filter.belief.sensor_1_x_belief);
+    
 
     return 0;
 }

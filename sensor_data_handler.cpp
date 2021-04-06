@@ -37,3 +37,13 @@ void SensorDataHandler::readSensorData(std::string_view file_path)
     sensor_data.sensor_1_y_confidence.push_back(std::strtod(sensor_1_y_confidence.c_str(), 0));
   }
 }
+
+void SensorDataHandler::writeSensorData(std::string_view filename, std::string_view column_name, std::vector<double> values){
+    
+    std::ofstream csv_file(filename.data());
+    csv_file << column_name.data() << "\n";
+    for(const auto& item : values) {
+        csv_file << item << "\n";
+    }
+    csv_file.close();
+}
