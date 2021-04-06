@@ -1,5 +1,6 @@
 #include "bayesian_filter.h"
 #include "sensor_data_handler.h"
+#include <iostream>
 
 using namespace std;
 
@@ -10,14 +11,19 @@ namespace {
     // initial belief
     belief.push_back(1.0);
     // define motion uncertainty
-    constexpr double motion_uncertainty = 0.95;
-    uint current_index = 0;
-    // iterate through confidence vector
-    for (const auto& confidence_it : confidences) {
+    constexpr double motion_uncertainty = 0.99;
+    // keep track of the index
+    unsigned long int current_index = 0;
+    // iterate reverse through confidence vector
+     for (auto confidence_it = confidences.rbegin(); confidence_it != confidences.rend(); ++confidence_it) {
+      current_index++;
+      auto last_index = current_index - 1;
       // prediction step
-      auto predicted_belief =  motion_uncertainty * belief.at(current_index - 1);
+      // we expect the prediction step to be only relying on the uncertainty of the
+      // motion control
+      auto predicted_belief =  motion_uncertainty * belief[last_index];
       // update step
-      auto current_belief = confidence_it * predicted_belief;
+      double current_belief = *confidence_it * predicted_belief;
       belief.push_back(current_belief);
     }
     return belief;

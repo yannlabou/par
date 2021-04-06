@@ -38,12 +38,19 @@ void SensorDataHandler::readSensorData(std::string_view file_path)
   }
 }
 
-void SensorDataHandler::writeSensorData(std::string_view filename, std::string_view column_name, std::vector<double> values){
-    
+int SensorDataHandler::writeSensorData(std::string_view filename,
+                                        std::string_view column_name_1, std::vector<double> values_1,
+                                        std::string_view column_name_2, std::vector<double> values_2) {
+    // get filename
     std::ofstream csv_file(filename.data());
-    csv_file << column_name.data() << "\n";
-    for(const auto& item : values) {
-        csv_file << item << "\n";
+    // write header
+    csv_file << column_name_1 << ";" << column_name_2 << "\n";
+    // error handling
+    if (values_1.size() != values_2.size()) {return 1;}
+    // write values
+    for (unsigned long int index = 0; index < values_1.size(); ++index) {
+      csv_file << values_1[index] << ";" << values_2[index] << "\n";
     }
+    return 0;
     csv_file.close();
 }
