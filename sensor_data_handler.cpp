@@ -38,7 +38,7 @@ void SensorDataHandler::readSensorData(std::string_view file_path)
   }
 }
 
-int SensorDataHandler::writeSensorData(std::string_view filename,
+bool SensorDataHandler::writeSensorData(std::string_view filename,
                                         std::string_view column_name_1, std::vector<double> values_1,
                                         std::string_view column_name_2, std::vector<double> values_2) {
     // get filename
@@ -51,6 +51,6 @@ int SensorDataHandler::writeSensorData(std::string_view filename,
     for (unsigned long int index = 0; index < values_1.size(); ++index) {
       csv_file << values_1[index] << ";" << values_2[index] << "\n";
     }
-    return 0;
     csv_file.close();
+    return false;
 }

@@ -27,7 +27,7 @@ public:
   void readSensorData(std::string_view file_path);
 
   // writer
-  int writeSensorData(std::string_view filename, std::string_view column_name_1, std::vector<double> values_1,
+  bool writeSensorData(std::string_view filename, std::string_view column_name_1, std::vector<double> values_1,
                       std::string_view column_name_2, std::vector<double> values_2);
 };
 

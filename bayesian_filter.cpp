@@ -1,6 +1,5 @@
 #include "bayesian_filter.h"
 #include "sensor_data_handler.h"
-#include <iostream>
 
 using namespace std;
 
