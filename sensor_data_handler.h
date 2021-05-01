@@ -1,3 +1,6 @@
+#ifndef SENSOR_DATA_HANDLER_H_
+#define SENSOR_DATA_HANDLER_H_
+
 #include <sstream>
 #include <string>
 #include <string_view>
@@ -23,6 +26,9 @@ public:
   // reader
   void readSensorData(std::string_view file_path);
 
-  // TODO
-  void writeSensorData(SensorData sensor_data);
+  // writer
+  bool writeSensorData(std::string_view filename, std::string_view column_name_1, std::vector<double> values_1,
+                      std::string_view column_name_2, std::vector<double> values_2);
 };
+
+#endif // SENSOR_DATA_HANDLER_H_

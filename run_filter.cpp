@@ -1,3 +1,4 @@
+#include "bayesian_filter.h"
 #include "sensor_data_handler.h"
 #include <iostream>
 #include <string>
@@ -5,24 +6,26 @@
 using namespace std;
 
 int main(int argc, char **argv) {
-    if (argc != 2) {
-        std::cerr << "usage: run_filter <file_path>\n";
+    if (argc != 3) {
+        cerr << "usage: run_filter <input_file_path> <output_file_path>\n";
         return EXIT_FAILURE;
     }
-    string file_path{argv[1]};
+    string input_file_path{argv[1]};
+    string output_file_path{argv[2]};
 
     SensorDataHandler data_handler;
-    data_handler.readSensorData(file_path);
+    data_handler.readSensorData(input_file_path);
 
-    // do cross check
-    cout << data_handler.sensor_data.ground_truth_x_values.size() << endl;
-    cout << data_handler.sensor_data.ground_truth_y_values.size() << endl;
-    cout << data_handler.sensor_data.sensor_1_x_values.size() << endl;
-    cout << data_handler.sensor_data.sensor_1_x_confidence.size() << endl;
-    cout << data_handler.sensor_data.sensor_1_y_values.size() << endl;
-    cout << data_handler.sensor_data.sensor_1_y_confidence.size() << endl;
+    BayesianFilter bayesian_filter;
+    bayesian_filter.generateBelief(data_handler.sensor_data);
 
-    // TODO run filter on input data
-
+    auto result = data_handler.writeSensorData(output_file_path,
+                                              "x_belief", bayesian_filter.belief.sensor_1_x_belief,
+                                              "y_belief", bayesian_filter.belief.sensor_1_y_belief);
+    if (result) {
+        cerr << "storing output failed\n";
+        return EXIT_FAILURE;
+    }
+    cout << "done. output stored in " << output_file_path << "\n";
     return 0;
 }
